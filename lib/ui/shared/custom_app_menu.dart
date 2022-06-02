@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:vertical_landing_page/providers/page_provider.dart';
 import 'package:vertical_landing_page/ui/shared/custom_menu_item.dart';
 
 class CustomAppMenu extends StatefulWidget {
@@ -23,6 +25,8 @@ class _CustomAppMenuState extends State<CustomAppMenu>
 
   @override
   Widget build(BuildContext context) {
+    final pageProvider = Provider.of<PageProvider>(context, listen: false);
+
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
@@ -40,14 +44,14 @@ class _CustomAppMenuState extends State<CustomAppMenu>
           child: Column(
             children: [
               _MenuTitle(isOpen: isOpen, controller: controller),
-              //Items Del Menu
 
+              //Items Del Menu
               if (isOpen) ...[
-                CustomMenuItem(text: 'Home', onPressed: () {}),
-                CustomMenuItem(text: 'About', onPressed: () {}, delay: 30),
-                CustomMenuItem(text: 'Pricing', onPressed: () {}, delay: 60),
-                CustomMenuItem(text: 'Contact', onPressed: () {}, delay: 90),
-                CustomMenuItem(text: 'Location', onPressed: () {}, delay: 120),
+                CustomMenuItem(text: 'Home', onPressed: () =>pageProvider.goTo(0)),
+                CustomMenuItem(text: 'About', onPressed: () =>pageProvider.goTo(1), delay: 30),
+                CustomMenuItem(text: 'Pricing', onPressed: () =>pageProvider.goTo(2), delay: 60),
+                CustomMenuItem(text: 'Contact', onPressed: () =>pageProvider.goTo(3), delay: 90),
+                CustomMenuItem(text: 'Location', onPressed: () =>pageProvider.goTo(4), delay: 120),
                 const SizedBox(height: 8)
               ]
             ],
