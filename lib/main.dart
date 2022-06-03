@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vertical_landing_page/providers/page_provider.dart';
@@ -42,6 +44,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scrollBehavior: AppScrollBehavior(),
       debugShowCheckedModeBanner: false,
       title: 'Landing Page',
       initialRoute: '/home',
@@ -49,4 +52,12 @@ class _MyAppState extends State<MyApp> {
           Flurorouter.router.generator(routeSettings),
     );
   }
+}
+
+class AppScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
 }

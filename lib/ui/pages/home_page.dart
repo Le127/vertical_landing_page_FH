@@ -47,7 +47,7 @@ class _HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pageProvider = Provider.of<PageProvider>(context,listen: false);
+    final pageProvider = Provider.of<PageProvider>(context, listen: false);
 
     return PageView(
       controller: pageProvider.scrollController,
