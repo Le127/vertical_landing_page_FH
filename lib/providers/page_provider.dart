@@ -16,13 +16,16 @@ class PageProvider extends ChangeNotifier {
 
   createScrollController(String routeName) {
     scrollController = PageController(initialPage: getPageIndex(routeName));
-
+    //Inicializa con el nombre de la pestaña segun el indice.
+    html.document.title = _pages[getPageIndex(routeName)];
     scrollController.addListener(() {
       final index = (scrollController.page ?? 0).round();
 
       if (index != _currentIndex) {
         html.window.history.pushState(null, 'none', '#/${_pages[index]}');
         _currentIndex = index;
+        //cambia el nombre de la pestaña
+        html.document.title = _pages[index];
       }
     });
   }
